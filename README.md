@@ -5,8 +5,10 @@ A quick and dirty Ruby script for circumventing the network quotas at a certain 
 Your network connection will be interrupted for a few seconds when this happens, but that's much better than being throttled into oblivion.
 
 ## Usage
-1. Put your machine's current MAC address in the `mac_addr` variable.
-2. Run it as root: `rvmsudo ruby circumvent_quota.rb`
+```
+rvmsudo ruby circumvent_quota.rb [interface] [current MAC address]
+rvmsudo ruby circumvent_quota.rb en0 01:23:45:67:89:ab
+```
 
 ## Dependencies
 - Ruby

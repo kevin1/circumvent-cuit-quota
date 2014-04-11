@@ -25,8 +25,14 @@ def set_interface(interface, direction)
   system("ifconfig #{interface} #{direction}")
 end
 
-mac_addr = ""
-interface = "en0"
+if ARGV.length != 2
+  puts("  usage: rvmsudo ruby circumvent_quota.rb [interface] [current MAC address]")
+  puts("example: rvmsudo ruby circumvent_quota.rb en0 01:23:45:67:89:ab")
+  exit(false)
+end
+
+interface = ARGV[0]
+mac_addr = ARGV[1]
 
 while true
   if is_over_quota
