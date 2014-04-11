@@ -2,7 +2,7 @@
 # Returns true if over quota, false otherwise
 def is_over_quota
   quota_text = `curl -s http://www.columbia.edu/cgi-bin/acis/networks/quota/netquota.pl`
-  return quota_text.include? "bad.png"
+  return quota_text.include?("bad.png")
 end
 
 # Increment the MAC address provided
@@ -17,14 +17,12 @@ end
 
 # Sets the MAC address
 def set_mac_addr(interface, mac)
-  cmd = sprintf("ifconfig %s ether %s", interface, mac)
-  system(cmd)
+  system("ifconfig #{interface} ether #{mac}")
 end
 
 # Take an interface up or down
 def set_interface(interface, direction)
-  cmd = sprintf("ifconfig %s %s", interface, direction)
-  system(cmd)
+  system("ifconfig #{interface} #{direction}")
 end
 
 mac_addr = ""
@@ -35,8 +33,7 @@ while true
     # Increment the MAC address
     mac_addr = next_mac_addr(mac_addr)
 
-    puts Time.now
-    printf("Changing MAC address to %s\n\n", mac_addr)
+    puts("#{Time.now}\tNew MAC: #{mac_addr}\n")
 
     # Spoof MAC address
     set_mac_addr(interface, mac_addr)
